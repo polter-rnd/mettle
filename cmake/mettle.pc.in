@@ -1,0 +1,11 @@
+prefix=@CMAKE_INSTALL_PREFIX@
+exec_prefix=${prefix}
+includedir=@PKG_CONFIG_INCLUDEDIR@
+libdir=@PKG_CONFIG_LIBDIR@
+
+Name: libmettle
+Description: A C++20 unit test framework
+URL: https://jimporter.github.io/mettle
+Version: @PROJECT_VERSION@
+CFlags: -I${includedir}
+Libs: -L${libdir} -lmettle -pthread
