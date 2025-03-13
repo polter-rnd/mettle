@@ -1,0 +1,8 @@
+@PACKAGE_INIT@
+
+if(NOT TARGET mettle::mettle)
+    include(CMakeFindDependencyMacro)
+    find_dependency(Boost CONFIG COMPONENTS program_options iostreams)
+
+    include(${CMAKE_CURRENT_LIST_DIR}/mettle-targets.cmake)
+endif()
