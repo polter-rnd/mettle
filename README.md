@@ -62,6 +62,60 @@ suite<> basic("a basic suite", [](auto &_) {
 });
 ```
 
+## Building mettle with CMake
+
+Available options:
+- `METTLE_BUILD_EXECUTABLE`: Build mettle executable (default: ON if top-level).
+- `METTLE_BUILD_EXAMPLES`: Build test examples (default: OFF).
+- `METTLE_SAFE_EXIT`: Use safe exit function (_exit) when exiting test subprocesses (default: ON).
+
+## Using mettle in your project
+
+You can use `mettle` in your CMake project either by using `find_package` or `FetchContent`.
+
+### Using find_package
+
+First, install `mettle` to your system or specify the path to the installation directory.
+Then, you can use `find_package` to locate `mettle` and link it to your target:
+
+```cmake
+cmake_minimum_required(VERSION 3.12)
+project(MyProject VERSION 1.0 LANGUAGES CXX)
+
+set(CMAKE_CXX_STANDARD 20)
+
+find_package(mettle REQUIRED)
+
+add_executable(my_tests test.cpp)
+target_link_libraries(my_tests PRIVATE mettle::mettle)
+
+enable_testing()
+add_test(NAME my_tests COMMAND my_tests)
+```
+
+### Using FetchContent
+
+If you prefer to include `mettle` directly from its repository, you can use `FetchContent`:
+
+```cmake
+cmake_minimum_required(VERSION 3.12)
+project(MyProject VERSION 1.0 LANGUAGES CXX)
+
+set(CMAKE_CXX_STANDARD 20)
+
+include(FetchContent)
+FetchContent_Declare(mettle
+  GIT_REPOSITORY https://github.com/jimporter/mettle.git
+)
+FetchContent_MakeAvailable(mettle)
+
+add_executable(my_tests test.cpp)
+target_link_libraries(my_tests PRIVATE mettle::mettle)
+
+enable_testing()
+add_test(NAME my_tests COMMAND my_tests)
+```
+
 ## License
 
 This library is licensed under the [BSD 3-Clause license](LICENSE).
