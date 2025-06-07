@@ -1,0 +1,7 @@
+{
+    "name": "mettle",
+    "dependencies": [
+        "boost-program-options",
+        "boost-iostreams"
+    ]
+}
